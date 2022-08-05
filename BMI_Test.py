@@ -21,7 +21,7 @@ class BMI:
 
 def read_contents():
     list_of_row = []
-    with open('Data_for_BMI_Calculator_Height_Weight.csv') as file:
+    with open('BMI_Calculator_Height_Weight.csv') as file:
         alllines = csv.reader(file)
         for row in alllines:
             list_of_row.append(row)
@@ -42,8 +42,7 @@ def finaldata_with_bmi(alldata):
         else:
             notValidData.append(row)
             line_count +=1
-    # print('this data is not valid-->',notValidData)
-    # print('total_rows-->',line_count)
+  
     return validData
 
 
@@ -83,19 +82,15 @@ def calculate_bmi(data):
 
 
 def write_csv(data):
-    with open('output_for_BMI_Calculator_Height_Weight.csv', 'w',newline='') as file:
+    with open('output_BMI_Calculator_Height_Weight.csv', 'w',newline='') as file:
         csv_data = csv.writer(file, delimiter=',')
         csv_data.writerow(['Gender', 'Height', 'Weight', 'BMI_categoty', 'BMI_range', 'Health_risk'])
         for row in data:
-            # print(row)
             csv_data.writerows([row])
     return 'csv file added successfully..'
 
 
 if __name__ == '__main__':
     contents = read_contents()
-    # print(result)
-    finaldata = finaldata_with_bmi(contents)
-    # print('final data with BMI-->',finaldata)
     result = write_csv(finaldata)
     print(result)
